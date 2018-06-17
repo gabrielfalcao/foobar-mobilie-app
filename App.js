@@ -1,37 +1,42 @@
-import { StyleSheet, Text, Image, View, ScrollView } from 'react-native';
-import React, { Component } from 'react';
+import React from 'react';
+import { View, Text } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+
+import HomeScreen from './HomeScreen';
+import CameraScreen from './CameraScreen';
+import TodoListScreen from './TodoListScreen';
+import JJScreen from './JJScreen';
+import CuddlesScreen from './CuddlesScreen';
+import KissesScreen from './KissesScreen';
 
 
-class Bananas extends Component {
-  render() {
-    let pic = {
-      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-    };
-    return (
-      <Image source={pic} style={{flex: 1,resizeMode: 'cover', width: 376}}/>
-    );
-  }
-}
+
+const RootStack = createStackNavigator({
+    Home: {
+        screen: HomeScreen,
+    },
+    Camera: {
+        screen: CameraScreen,
+    },
+    TodoList: {
+        screen: TodoListScreen,
+    },
+    JJAdmin: {
+        screen: JJScreen,
+    },
+    Cuddles: {
+        screen: CuddlesScreen,
+    },
+    Kisses: {
+        screen: KissesScreen,
+    },
+},
+{
+   initialRouteName: 'Home',
+});
 
 export default class App extends React.Component {
-  render() {
-    return (
-    <ScrollView >
-      <View style={{flex: 1, backgroundColor: '#fff0cc'}} />
-      <View style={styles.header}>
-        <Text style={{flex: 1,fontSize: 44, textAlign: "center", color: "#c80" }}>Got Bananas ?</Text>
-      </View>
-      <View style={styles.middle}>
-       <Bananas />
-      </View>
-    </ScrollView>
-    );
-  }
+    render() {
+        return <RootStack />;
+    }
 }
-
-const styles = StyleSheet.create({
-  header: {flex: 2, backgroundColor: '#fff0cc'},
-  middle: {
-    flex: 3, backgroundColor: '#ffffee',alignItems: 'center', justifyContent: 'center'
-  },
-});
